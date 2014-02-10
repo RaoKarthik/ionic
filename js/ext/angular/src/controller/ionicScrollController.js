@@ -21,6 +21,14 @@ angular.module('ionic.ui.scroll')
   //through `require: '$ionicScroll'
   this.$element.data('$$ionicScrollController', this);
 
+  window.addEventListener('resize', resize);
+  $scope.$on('$destroy', function() {
+    window.removeEventListener('resize', resize);
+  });
+  function resize() {
+    scrollView.resize();
+  }
+
   $timeout(function() {
     scrollView.run();
 
